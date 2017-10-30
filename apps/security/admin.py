@@ -1,3 +1,7 @@
 from django.contrib import admin
-
-# Register your models here.
+# from django.contrib.auth.models import User
+#
+# class UserAdmin(admin.ModelAdmin):
+#     def has_add_permission(self, request):
+#         return False
+# admin.site.register(User, UserAdmin)
