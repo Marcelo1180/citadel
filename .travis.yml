@@ -1,7 +1,3 @@
-language: python
-os: debian
-group: "stable",
-dist: "jessie"
 #   A basic travis.yml boilerplate for Django projects
 #
 #   The set-up assumes a postgreSQL database.
@@ -12,6 +8,10 @@ dist: "jessie"
 # * your_repo
 
 language: python
+os: debian
+group: stable
+dist: jessie
+
 
 python:
   - 3.5
