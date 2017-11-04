@@ -51,6 +51,32 @@ def example_view(request, format=None):
     }
     return Response(content)
 
+from citadel.permissions import HasGroupPermission
+from rest_framework.views import APIView
+
+# @api_view(['GET'])
+# @permission_classes((HasGroupPermission, ))
+# @required_groups(('RRHH' ,))
+# def example_new_view(request, format=None):
+#     content = {
+#         'status': 'Hola a todos Seguro'
+#     }
+#     return Response(content)
+class example_new_view(APIView):
+    permission_classes = [HasGroupPermission]
+    required_groups = ['Estudiante', ]
+    def get(self, request, format=None):
+        content = {
+            'status': 'Hola a todos Seguro'
+        }
+        return Response(content)
+    def post(self, request, format=None):
+        content = {
+            'status': 'Hola a todos Seguro',
+            'otro': request.data
+        }
+        return Response(content)
+
 
 from haystack.query import SearchQuerySet, EmptySearchQuerySet
 
@@ -136,6 +162,7 @@ urlpatterns = [
     url(r'^api/v1/', include(router.urls)),
     #url(r'^api-auth-demo/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^api/v2/', example_view),
+    url(r'^api/v5/', example_new_view.as_view()),
     url(r'^api/v3/users/', ListCreateAPIView.as_view(queryset=User.objects.all(), serializer_class=UserSerializer), name='user-list'),
     url(r'^api/v1/auto/', busqueda_view),
     # -------------------------------------------------------------------------------------------

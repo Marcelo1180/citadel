@@ -12,8 +12,8 @@ class Biblioteca(models.Model):
         return self.biblioteca
 
 class Libro(models.Model):
-    biblioteca = models.ForeignKey(Biblioteca)
     # tipo = models.ForeignKey(Tipo, related_name="tipo_libro")
+    biblioteca = models.ForeignKey(Biblioteca)
     # Metadatos
     titulo = models.CharField(max_length=150) #old 70
     autor = models.CharField(max_length=100) #old 50
